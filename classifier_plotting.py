@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import svm, datasets
-
+import pandas as pd
 
 def make_meshgrid(x, y, h=.02):
     """Create a mesh of points to plot in
@@ -45,7 +45,28 @@ iris = datasets.load_iris()
 # Take the first two features. We could avoid this by using a two-dim dataset
 X = iris.data[:, :2]
 y = iris.target
+print(type(X))
+
 # TODO load titanic dataset
+df = pd.read_csv('data/titanic/train.csv')
+df.dropna(how='any', inplace=True)
+gender = {'male': 1, 'female': 2}
+features = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch']
+data = df[features]
+#y = df['Survived']
+
+
+
+X = np.array()
+for i, row in data.iterrows():
+    if row[1] == 'male':
+        row[1] = gender['male']
+    else:
+        row[1] = gender['female']
+
+    X.append(row.tolist())
+print(X_train)
+
 
 # we create an instance of SVM and fit out data. We do not scale our
 # data since we want to plot the support vectors
