@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn import svm, datasets
 import pandas as pd
 
+
 def make_meshgrid(x, y, h=.02):
     """Create a mesh of points to plot in
 
